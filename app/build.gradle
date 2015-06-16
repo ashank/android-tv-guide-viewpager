@@ -1,0 +1,36 @@
+//声明android程序
+apply plugin: 'com.android.application'
+
+android {
+    //编译SDK版本
+    compileSdkVersion 22
+    // build tools的版本
+    buildToolsVersion "21.1.2"
+
+    defaultConfig {
+        // 应用的包名
+        applicationId "tv.guide.pager"
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        debug{
+            // debug模式
+        }
+
+        release {
+            // 是否进行混淆
+            minifyEnabled false
+            // 混淆文件的位置
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:22.0.0'
+}
