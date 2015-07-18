@@ -28,7 +28,7 @@ public class GuidePagerAdapter extends PagerAdapter{
     public int getCount() {
     	return mIsInfiniteLoop ? Integer.MAX_VALUE : ListUtils.getCount(mImageIdList);
     }
-    
+
     private int getPosition(int position) {
 		return mIsInfiniteLoop ? position % mSize : position;
 	}
@@ -40,7 +40,7 @@ public class GuidePagerAdapter extends PagerAdapter{
 		container.addView(view);
 		return view;
     }
-    
+
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
     	View view = (View) object;
@@ -51,7 +51,7 @@ public class GuidePagerAdapter extends PagerAdapter{
     public boolean isViewFromObject(View arg0, Object arg1) {
         return arg0 == arg1;
     }
-    
+
     private static class ViewHolder {
 		ImageView imageView;
 	}
@@ -68,7 +68,7 @@ public class GuidePagerAdapter extends PagerAdapter{
 		holder.imageView.setImageResource(mImageIdList.get(getPosition(position)));
 		return view;
    }
-   
+
    public GuidePagerAdapter setInfiniteLoop(boolean isInfiniteLoop) {
 		mIsInfiniteLoop = isInfiniteLoop;
 		return this;

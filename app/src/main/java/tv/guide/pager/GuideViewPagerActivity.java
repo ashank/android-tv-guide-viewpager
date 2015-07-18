@@ -1,29 +1,34 @@
 package tv.guide.pager;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import tv.guide.pager.adapter.GuidePagerAdapter;
+import tv.guide.pager.adapter.DPGuidePagerAdapter;
+import tv.guide.pager.model.DPGuideModel;
 import tv.guide.pager.model.ViewPagerState;
 import tv.guide.pager.utils.ListUtils;
 import tv.guide.pager.widget.GuideViewPage;
 
 public class GuideViewPagerActivity extends Activity {
 	protected GuideViewPage mViewPage;
+	private Context mContext;
 	private int[] ICON_MAP_COMMON = { R.drawable.recommend_default_icon_1, R.drawable.recommend_default_icon_2,
 			R.drawable.recommend_default_icon_3, R.drawable.recommend_default_icon_4,
 			R.drawable.recommend_default_icon_5};
-	private List<Integer> mImageIdList  = new ArrayList<Integer>();
-	private GuidePagerAdapter mGuidePagerAdapter;
+	private List<DPGuideModel> mImageIdList  = new ArrayList<DPGuideModel>();
+	private DPGuidePagerAdapter mGuidePagerAdapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_viewpager);
+		mContext = this;
 		initView();
 	}
 	
@@ -39,9 +44,12 @@ public class GuideViewPagerActivity extends Activity {
 	private void initView() {
 		mViewPage = (GuideViewPage) findViewById(R.id.vp_activity);
 		for (int i = 0; i < ICON_MAP_COMMON.length; i++) {
-			mImageIdList.add(ICON_MAP_COMMON[i]);
+			DPGuideModel model = new DPGuideModel();
+			model.setImageResId(ICON_MAP_COMMON[i]);
+			model.setDes(i + "des");
+			mImageIdList.add(model);
 		}
-		mGuidePagerAdapter = new GuidePagerAdapter(getApplicationContext(), mImageIdList).setInfiniteLoop(false);
+		mGuidePagerAdapter = new DPGuidePagerAdapter(mContext,mImageIdList,R.layout.page_item);
 		mViewPage.setAdapter(mGuidePagerAdapter);
 		mViewPage.startAutoScroll();//设置自动播放
 		mViewPage.setScollTime(5);//设置滑动速度
@@ -72,7 +80,7 @@ public class GuideViewPagerActivity extends Activity {
 	}
 
 	private void startHomePage() {
-		System.out.println("startHomePage");
+		Toast.makeText(this,"startHomePage",Toast.LENGTH_LONG).show();
 	}
 	
 	@Override
