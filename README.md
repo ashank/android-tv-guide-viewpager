@@ -16,12 +16,12 @@ TV上不再是手势滑动，而是遥控按键，所以TV和手机上的ViewPag
 3、添加每一页监听，保存item当前位置position<br/>
 
 ### 7.20更新
-1、添加viewPager循环机制
-2、添加adapter多个构造函数，方便调用
+1、添加viewPager循环机制<br/>
+2、添加adapter多个构造函数，方便调用<br/>
 
 ###下一步
-1、添加viewPager循环机制<br/> 7.20已完成<br/>
-2、支持new出来的view添加，不再只是布局<br/> 意义不大，最初GuidePagerAdapter使用new的方式，可参考<br/>
+1、添加viewPager循环机制 7.20已完成<br/>
+2、支持new出来的view添加,不再只是布局(意义不大，最初GuidePagerAdapter使用new的方式，可参考)<br/>
 
 ###使用方法
 xml文件:
@@ -34,6 +34,7 @@ xml文件:
   
 GuideViewPage mViewPage = (GuideViewPage) findViewById(R.id.vp_activity);
 ```
+
 ###代码实现
 
 ```java
@@ -43,6 +44,11 @@ GuideViewPage mViewPage = (GuideViewPage) findViewById(R.id.vp_activity);
   mViewPage.startAutoScroll();//设置自动播放
   mViewPage.setScollTime(5);//设置滑动速度
   
+  //选择不同方式调用
+  mGuidePagerAdapter = new DPGuidePagerAdapter(mContext,mImageIdList,R.layout.page_item).setInfiniteLoop(true);
+  mGuidePagerAdapter = new DPGuidePagerAdapter(mContext,mImageIdList,R.layout.page_item,true);
+  //...
+  mGuidePagerAdapter.setInfiniteLoop(true);
 ```
 
 ###页面处理
