@@ -49,7 +49,8 @@ public class GuideViewPagerActivity extends Activity {
 			model.setDes(i + "des");
 			mImageIdList.add(model);
 		}
-		mGuidePagerAdapter = new DPGuidePagerAdapter(mContext,mImageIdList,R.layout.page_item);
+//		mGuidePagerAdapter = new DPGuidePagerAdapter(mContext,mImageIdList,R.layout.page_item).setInfiniteLoop(true);
+		mGuidePagerAdapter = new DPGuidePagerAdapter(mContext,mImageIdList,R.layout.page_item,true);
 		mViewPage.setAdapter(mGuidePagerAdapter);
 		mViewPage.startAutoScroll();//设置自动播放
 		mViewPage.setScollTime(5);//设置滑动速度
