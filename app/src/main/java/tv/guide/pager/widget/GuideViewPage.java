@@ -11,6 +11,7 @@ import android.view.animation.Interpolator;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 
+import tv.guide.pager.inter.ViewPagerOnSelectedListener;
 import tv.guide.pager.model.ViewPagerState;
 
 public class GuideViewPage extends ViewPager {
@@ -25,7 +26,12 @@ public class GuideViewPage extends ViewPager {
 	private GuideScroller mSelfScroller;
 	private GuideHandler mHandler;
 	private ViewPagerState mState = ViewPagerState.LEFT_EDGE;
-	
+	private ViewPagerOnSelectedListener mViewPagerOnSelectedListener;
+
+	public void setViewPagerOnSelectedListener(ViewPagerOnSelectedListener mViewPagerOnSelectedListener) {
+		this.mViewPagerOnSelectedListener = mViewPagerOnSelectedListener;
+	}
+
 	public GuideViewPage(Context context) {
 		super(context);
 		init();
@@ -121,6 +127,7 @@ public class GuideViewPage extends ViewPager {
 	private OnPageChangeListener mOnPageChangeListener = new OnPageChangeListener() {
 	    @Override
 	    public void onPageSelected(int position) {
+			mViewPagerOnSelectedListener.onViewPageSelected(position);
 	    	stopAutoScroll();
 	    	initEgdeState();
 	    	sendScrollMessage(getInterval() + mSelfScroller.getDuration());

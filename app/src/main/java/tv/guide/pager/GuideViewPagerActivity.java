@@ -4,26 +4,30 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import tv.guide.pager.adapter.DPGuidePagerAdapter;
+import tv.guide.pager.inter.ViewPagerOnSelectedListener;
 import tv.guide.pager.model.DPGuideModel;
 import tv.guide.pager.model.ViewPagerState;
 import tv.guide.pager.utils.ListUtils;
 import tv.guide.pager.widget.GuideViewPage;
 
-public class GuideViewPagerActivity extends Activity {
+public class GuideViewPagerActivity extends Activity implements ViewPagerOnSelectedListener {
 	protected GuideViewPage mViewPage;
 	private Context mContext;
 	private int[] ICON_MAP_COMMON = { R.drawable.recommend_default_icon_1, R.drawable.recommend_default_icon_2,
 			R.drawable.recommend_default_icon_3, R.drawable.recommend_default_icon_4,
 			R.drawable.recommend_default_icon_5};
+	private  final int COUNT = ICON_MAP_COMMON.length;
 	private List<DPGuideModel> mImageIdList  = new ArrayList<DPGuideModel>();
 	private DPGuidePagerAdapter mGuidePagerAdapter;
-	
+	private TextView mIndexText;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,6 +47,8 @@ public class GuideViewPagerActivity extends Activity {
 	
 	private void initView() {
 		mViewPage = (GuideViewPage) findViewById(R.id.vp_activity);
+		mIndexText = (TextView) findViewById(R.id.vp_index);
+		mIndexText.setText(new StringBuilder().append("1/").append(COUNT));
 		for (int i = 0; i < ICON_MAP_COMMON.length; i++) {
 			DPGuideModel model = new DPGuideModel();
 			model.setImageResId(ICON_MAP_COMMON[i]);
@@ -51,6 +57,7 @@ public class GuideViewPagerActivity extends Activity {
 		}
 //		mGuidePagerAdapter = new DPGuidePagerAdapter(mContext,mImageIdList,R.layout.page_item).setInfiniteLoop(true);
 		mGuidePagerAdapter = new DPGuidePagerAdapter(mContext,mImageIdList,R.layout.page_item,true);
+		mViewPage.setViewPagerOnSelectedListener(this);
 		mViewPage.setAdapter(mGuidePagerAdapter);
 		mViewPage.startAutoScroll();//设置自动播放
 		mViewPage.setScollTime(5);//设置滑动速度
@@ -100,5 +107,12 @@ public class GuideViewPagerActivity extends Activity {
 		super.onResume();
 		mViewPage.startAutoScroll();
 	}
-	
+
+	@Override
+	public void onViewPageSelected(int position) {
+	if (mGuidePagerAdapter.getInfiniteLoop()){
+		position = position % COUNT;
+	}
+		mIndexText.setText(new StringBuilder().append(position + 1).append("/").append(COUNT));
+	}
 }

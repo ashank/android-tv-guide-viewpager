@@ -20,12 +20,16 @@ public class DPGuidePagerAdapter extends DPBasePageAdapter<DPGuideModel>{
 
     @Override
     public void convert(DPAdapterViewHolder holder, DPGuideModel model) {
-        holder.setImageResource(R.id.page_item_imageview,model.getImageResId());
+        holder.setImageResource(R.id.page_item_imageview, model.getImageResId());
     }
 
     public DPGuidePagerAdapter setInfiniteLoop(boolean isInfiniteLoop) {
 		mIsInfiniteLoop = isInfiniteLoop;
 		return this;
 	}
+
+    public boolean getInfiniteLoop(){
+        return mIsInfiniteLoop;
+    }
 
 }
