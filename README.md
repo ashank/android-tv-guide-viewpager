@@ -15,17 +15,28 @@ TV上不再是手势滑动，而是遥控按键，所以TV和手机上的ViewPag
 3、动态设置页面滑动速度<br/>
 3、添加每一页监听，保存item当前位置position<br/>
 
-### 7.20更新
+### 7.19更新
 1、添加viewPager循环机制<br/>
 2、添加adapter多个构造函数，方便调用<br/>
 
-### 7.21更新
+### 7.20更新
 1、添加viewPager当前position 回调<br/>
 2、界面现实index/count 数比<br/>
+
+### 7.21 更新
+1、添加自定义viewpager，可以控制滑动速度
+2、添加viewpager＋fragment方式
 
 ###下一步
 1、添加viewPager循环机制 7.20已完成<br/>
 2、支持new出来的view添加,不再只是布局(意义不大，最初GuidePagerAdapter使用new的方式，可参考)<br/>
+3、抽象出BaseFragment
+
+### 实例
+目前需要配置Manifest文件<br/>
+1、GuideViewPagerActivity，支持自动滑动，遥控按键及手势和循环播放<br/>
+2、MainFragmentActivity，两种模式，原生viewpager＋imageview，自定义viewpager＋fragment<br/>
+
 
 ###使用方法
 xml文件:
@@ -138,5 +149,57 @@ GuideViewPage mViewPage = (GuideViewPage) findViewById(R.id.vp_activity);
 		super.onResume();
 		mViewPage.startAutoScroll();
 	}
+```
+
+### Manifest文件配置
+	使用标签来制定主activity也就是main <intent-filter>
+```
+	 <activity
+            android:name=".MainFragmentActivity"
+            android:label="@string/title_activity_main_fragment" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+```
+
+### 自定义viewpager
+重写Scroller，更改平易时间
+
+```
+	class FixedSpeedScroller extends Scroller {
+
+		public FixedSpeedScroller(Context context) {
+			super(context);
+		}
+
+		public FixedSpeedScroller(Context context, Interpolator interpolator) {
+			super(context, interpolator);
+		}
+
+		@Override
+		public void startScroll(int startX, int startY, int dx, int dy,int duration) {
+			super.startScroll(startX, startY, dx, dy, mScrollDuration);
+		}
+
+		@Override
+		public void startScroll(int startX, int startY, int dx, int dy) {
+			super.startScroll(startX, startY, dx, dy, mScrollDuration);
+		}
+	}
+```
+
+
+布局中使用
+```
+    <tv.guide.pager.widget.ScrollViewPager
+        android:id="@+id/viewpager_f2"
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:layout_below="@+id/viewpager_f"
+        android:background="#CC99FF">
+    </tv.guide.pager.widget.ScrollViewPager>
 ```
 
