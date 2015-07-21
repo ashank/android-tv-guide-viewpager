@@ -19,6 +19,10 @@ TV上不再是手势滑动，而是遥控按键，所以TV和手机上的ViewPag
 1、添加viewPager循环机制<br/>
 2、添加adapter多个构造函数，方便调用<br/>
 
+### 7.21更新
+1、添加viewPager当前position 回调<br/>
+2、界面现实index/count 数比<br/>
+
 ###下一步
 1、添加viewPager循环机制 7.20已完成<br/>
 2、支持new出来的view添加,不再只是布局(意义不大，最初GuidePagerAdapter使用new的方式，可参考)<br/>
@@ -92,6 +96,26 @@ GuideViewPage mViewPage = (GuideViewPage) findViewById(R.id.vp_activity);
 	return this;
    }
 
+```
+
+### 回调接口
+
+```
+	public interface ViewPagerOnSelectedListener {
+	    void onViewPageSelected(int position);
+	}
+
+```
+### 接口使用
+```
+	@Override
+	public void onViewPageSelected(int position) {
+	//判断当前是否是循环，如果循环则对position取余
+	if (mGuidePagerAdapter.getInfiniteLoop()){
+		position = position % COUNT;
+	}
+		mIndexText.setText(new StringBuilder().append(position + 1).append("/").append(COUNT));
+	}
 ```
 
 ###生命周期
