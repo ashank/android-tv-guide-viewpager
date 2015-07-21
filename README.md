@@ -2,9 +2,15 @@
   感谢[Trinea](https://github.com/Trinea/android-common)开源工具的帮助，了解了循环机制
   
 ### 自定义ViewPager，实现TV开机引导图,同时支持手机
-Android原生的viewpager速度不能自己控制，所以我们需要自定义滑动速度，达到我们想要的效果
+1、Android原生的viewpager速度不能自己控制，所以我们需要自定义滑动速度，达到我们想要的效果
 TV上不再是手势滑动，而是遥控按键，所以TV和手机上的ViewPager的实现效果和触发条件略有不同
-而且TV上的ViewPage可能需要自动切换到下一页的需求
+而且TV上的ViewPage可能需要自动切换到下一页的需求<br/>
+
+2、自定义viewpager,可以直接引用[ScrollViewPager.java](https://github.com/whiskeyfei/android-tv-guide-viewpager/blob/master/app/src/main/java/tv/guide/pager/widget/ScrollViewPager.java)<br/>
+
+3、viewpager + fragment,详细使用可以查看[MainFragmentActivity.java](https://github.com/whiskeyfei/android-tv-guide-viewpager/blob/master/app/src/main/java/tv/guide/pager/MainFragmentActivity.java)<br/>
+
+4、自定义viewpager,自动切换+循环播放[GuideViewPage](https://github.com/whiskeyfei/android-tv-guide-viewpager/blob/master/app/src/main/java/tv/guide/pager/widget/GuideViewPage.java),详细使用可以查看[GuideViewPagerActivity.java](https://github.com/whiskeyfei/android-tv-guide-viewpager/blob/master/app/src/main/java/tv/guide/pager/GuideViewPagerActivity.java)<br/>
 
 ### 效果图
   <img src="demo/demo.gif" width = "380" height = "676" alt="图片名称" align=center />
@@ -24,18 +30,18 @@ TV上不再是手势滑动，而是遥控按键，所以TV和手机上的ViewPag
 2、界面现实index/count 数比<br/>
 
 ### 7.21 更新
-1、添加自定义viewpager，可以控制滑动速度
-2、添加viewpager＋fragment方式
+1、添加自定义viewpager，可以控制滑动速度<br/>
+2、添加viewpager＋fragment方式<br/>
 
 ###下一步
 1、添加viewPager循环机制 7.20已完成<br/>
 2、支持new出来的view添加,不再只是布局(意义不大，最初GuidePagerAdapter使用new的方式，可参考)<br/>
-3、抽象出BaseFragment
+3、抽象出BaseFragment<br/>
 
 ### 实例
 目前需要配置Manifest文件<br/>
-1、GuideViewPagerActivity，支持自动滑动，遥控按键及手势和循环播放<br/>
-2、MainFragmentActivity，两种模式，原生viewpager＋imageview，自定义viewpager＋fragment<br/>
+1、[GuideViewPagerActivity.java](https://github.com/whiskeyfei/android-tv-guide-viewpager/blob/master/app/src/main/java/tv/guide/pager/GuideViewPagerActivity.java)支持自动滑动，遥控按键及手势和循环播放<br/>
+2、[MainFragmentActivity.java](https://github.com/whiskeyfei/android-tv-guide-viewpager/blob/master/app/src/main/java/tv/guide/pager/MainFragmentActivity.java)两种模式，原生viewpager＋imageview，自定义viewpager＋fragment<br/>
 
 
 ###使用方法
