@@ -21,8 +21,7 @@ public class GuideViewPagerActivity extends Activity implements ViewPagerOnSelec
 	protected GuideViewPage mViewPage;
 	private Context mContext;
 	private int[] ICON_MAP_COMMON = { R.drawable.recommend_default_icon_1, R.drawable.recommend_default_icon_2,
-			R.drawable.recommend_default_icon_3, R.drawable.recommend_default_icon_4,
-			R.drawable.recommend_default_icon_5};
+			R.drawable.recommend_default_icon_3, R.drawable.recommend_default_icon_5};
 	private  final int COUNT = ICON_MAP_COMMON.length;
 	private List<DPGuideModel> mImageIdList  = new ArrayList<DPGuideModel>();
 	private DPGuidePagerAdapter mGuidePagerAdapter;
@@ -57,6 +56,7 @@ public class GuideViewPagerActivity extends Activity implements ViewPagerOnSelec
 		}
 //		mGuidePagerAdapter = new DPGuidePagerAdapter(mContext,mImageIdList,R.layout.page_item).setInfiniteLoop(true);
 		mGuidePagerAdapter = new DPGuidePagerAdapter(mContext,mImageIdList,R.layout.page_item,true);
+//		mGuidePagerAdapter.setInfiniteLoop(true);
 		mViewPage.setViewPagerOnSelectedListener(this);
 		mViewPage.setAdapter(mGuidePagerAdapter);
 		mViewPage.startAutoScroll();//设置自动播放

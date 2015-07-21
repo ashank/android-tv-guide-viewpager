@@ -10,7 +10,9 @@ import java.util.List;
 
 import tv.guide.pager.utils.ListUtils;
 
-
+/**
+ *  最原始的adapter书写方式
+ */
 public class GuidePagerAdapter extends PagerAdapter{
     private List<Integer> mImageIdList;
     private Context mContext;
