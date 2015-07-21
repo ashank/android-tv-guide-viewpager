@@ -13,7 +13,8 @@ TV上不再是手势滑动，而是遥控按键，所以TV和手机上的ViewPag
 4、自定义viewpager,自动切换+循环播放[GuideViewPage](https://github.com/whiskeyfei/android-tv-guide-viewpager/blob/master/app/src/main/java/tv/guide/pager/widget/GuideViewPage.java),详细使用可以查看[GuideViewPagerActivity.java](https://github.com/whiskeyfei/android-tv-guide-viewpager/blob/master/app/src/main/java/tv/guide/pager/GuideViewPagerActivity.java)<br/>
 
 ### 效果图
-  <img src="demo/demo.gif" width = "380" height = "676" alt="图片名称" align=center />
+  <img src="demo/demo.gif" width = "370" height = "670" alt="图片名称" align=center />
+  <img src="demo/viewpager_test.gif" width = "370" height = "670" alt="图片名称" align=center />
 
 ###7.18更新
 1、编写通用DPBasePageAdapter，供扩展使用，DPAdapterViewHolder使用[DPBaseAdapter-Android](https://github.com/whiskeyfei/DPBaseAdapter-Android.git)中的viewholder<br/>
