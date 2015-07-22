@@ -1,11 +1,14 @@
 package tv.guide.pager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +17,7 @@ import tv.guide.pager.fragment.FirstFragment;
 import tv.guide.pager.widget.ScrollViewPager;
 
 
-public class MainFragmentActivity extends FragmentActivity {
+public class MainFragmentActivity extends ActionBarActivity {
     private int[] ICON_MAP_COMMON = { R.drawable.recommend_default_icon_1, R.drawable.recommend_default_icon_2,
             R.drawable.recommend_default_icon_3, R.drawable.recommend_default_icon_5};
     private ViewPager mViewPager;
@@ -50,6 +53,33 @@ public class MainFragmentActivity extends FragmentActivity {
         }
         mViewPager.setAdapter(new myPagerAdapter(getSupportFragmentManager(), fragmentList));
         mGuideViewPage.setAdapter(new myPagerAdapter(getSupportFragmentManager(), fragmentList2));
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.action_guide:
+                startIntent(GuideViewPagerActivity.class);
+                break;
+            case R.id.action_fragment:
+                startIntent(MainFragmentActivity.class);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void startIntent(Class<?> c){
+        Intent intent = new Intent(this,c);
+        startActivity(intent);
+        finish();
     }
 
     class myPagerAdapter extends FragmentPagerAdapter {

@@ -1,9 +1,12 @@
 package tv.guide.pager;
 
-import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,7 +20,7 @@ import tv.guide.pager.model.ViewPagerState;
 import tv.guide.pager.utils.ListUtils;
 import tv.guide.pager.widget.GuideViewPage;
 
-public class GuideViewPagerActivity extends Activity implements ViewPagerOnSelectedListener {
+public class GuideViewPagerActivity extends ActionBarActivity implements ViewPagerOnSelectedListener {
 	protected GuideViewPage mViewPage;
 	private Context mContext;
 	private int[] ICON_MAP_COMMON = { R.drawable.recommend_default_icon_1, R.drawable.recommend_default_icon_2,
@@ -110,9 +113,36 @@ public class GuideViewPagerActivity extends Activity implements ViewPagerOnSelec
 
 	@Override
 	public void onViewPageSelected(int position) {
-	if (mGuidePagerAdapter.getInfiniteLoop()){
-		position = position % COUNT;
-	}
+		if (mGuidePagerAdapter.getInfiniteLoop()) {
+			position = position % COUNT;
+		}
 		mIndexText.setText(new StringBuilder().append(position + 1).append("/").append(COUNT));
 	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.menu_main, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+		switch (id) {
+			case R.id.action_guide:
+				startIntent(GuideViewPagerActivity.class);
+				break;
+			case R.id.action_fragment:
+				startIntent(MainFragmentActivity.class);
+				break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	private void startIntent(Class<?> c){
+		Intent intent = new Intent(this,c);
+		startActivity(intent);
+		finish();
+	}
+
 }
