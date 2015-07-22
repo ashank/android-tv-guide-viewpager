@@ -12,6 +12,8 @@ TV上不再是手势滑动，而是遥控按键，所以TV和手机上的ViewPag
 
 4、自定义viewpager,自动切换+循环播放[GuideViewPage](https://github.com/whiskeyfei/android-tv-guide-viewpager/blob/master/app/src/main/java/tv/guide/pager/widget/GuideViewPage.java),详细使用可以查看[GuideViewPagerActivity.java](https://github.com/whiskeyfei/android-tv-guide-viewpager/blob/master/app/src/main/java/tv/guide/pager/GuideViewPagerActivity.java)<br/>
 
+5、使用v7包ActionBarActivity<br/>
+
 ### 效果图
   <img src="demo/demo.gif" width = "370" height = "670" alt="图片名称" align=center />
   <img src="demo/viewpager_test.gif" width = "370" height = "670" alt="图片名称" align=center />
@@ -33,6 +35,10 @@ TV上不再是手势滑动，而是遥控按键，所以TV和手机上的ViewPag
 ### 7.21 更新
 1、添加自定义viewpager，可以控制滑动速度<br/>
 2、添加viewpager＋fragment方式<br/>
+
+### 7.22 更新
+1、继承ActionBarActivity,实现Menu跳转其他demo界面<br/>
+2、同时修复ViewPager图片位置错误问题<br/>
 
 ###下一步
 1、添加viewPager循环机制 7.20已完成<br/>
