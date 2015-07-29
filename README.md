@@ -53,7 +53,7 @@ TV上不再是手势滑动，而是遥控按键，所以TV和手机上的ViewPag
 
 ###使用方法
 xml文件:
-```
+```java
   <tv.guide.pager.widget.GuideViewPage
         android:id="@+id/vp_activity"
         android:layout_width="match_parent"
@@ -105,7 +105,8 @@ GuideViewPage mViewPage = (GuideViewPage) findViewById(R.id.vp_activity);
 ```
 ###循环机制
 	增长数据重复，实际上真正view个数不变，通过去余来获得循环的position数据
-```
+	
+```java
    @Override
     public int getCount() {
         return mIsInfiniteLoop ? Integer.MAX_VALUE : ListUtils.getCount(mDataList);
@@ -124,14 +125,14 @@ GuideViewPage mViewPage = (GuideViewPage) findViewById(R.id.vp_activity);
 
 ### 回调接口
 
-```
+```java
 	public interface ViewPagerOnSelectedListener {
 	    void onViewPageSelected(int position);
 	}
 
 ```
 ### 接口使用
-```
+```java
 	@Override
 	public void onViewPageSelected(int position) {
 	//判断当前是否是循环，如果循环则对position取余
@@ -166,7 +167,7 @@ GuideViewPage mViewPage = (GuideViewPage) findViewById(R.id.vp_activity);
 
 ### Manifest文件配置
 	使用标签来制定主activity也就是main <intent-filter>
-```
+```java
 	 <activity
             android:name=".MainFragmentActivity"
             android:label="@string/title_activity_main_fragment" >
@@ -181,7 +182,7 @@ GuideViewPage mViewPage = (GuideViewPage) findViewById(R.id.vp_activity);
 ### 自定义viewpager
 重写Scroller，更改平易时间
 
-```
+```java
 	class FixedSpeedScroller extends Scroller {
 
 		public FixedSpeedScroller(Context context) {
@@ -206,7 +207,7 @@ GuideViewPage mViewPage = (GuideViewPage) findViewById(R.id.vp_activity);
 
 
 布局中使用
-```
+```java
     <tv.guide.pager.widget.ScrollViewPager
         android:id="@+id/viewpager_f2"
         android:layout_width="match_parent"
@@ -215,4 +216,5 @@ GuideViewPage mViewPage = (GuideViewPage) findViewById(R.id.vp_activity);
         android:background="#CC99FF">
     </tv.guide.pager.widget.ScrollViewPager>
 ```
-
+================
+######更多内容请关注[我的github](https://github.com/whiskeyfei),也欢迎大家到[Issues](https://github.com/whiskeyfei/android-tv-guide-viewpager/issues)提问题
