@@ -20,25 +20,12 @@ public abstract class DPBasePageAdapter<T> extends PagerAdapter {
     protected int mLayoutId;
     protected boolean mIsInfiniteLoop;
 
-    /**
-     *
-     * @param context context
-     * @param list    data
-     * @param layoutId  layout id
-     */
     public DPBasePageAdapter(Context context, List<T> list, int layoutId) {
         mContext = context;
         mDataList = list;
         mLayoutId = layoutId;
     }
 
-    /**
-     *
-     * @param context context
-     * @param list   data
-     * @param layoutId layout id
-     * @param isInfiniteLoop  is loop
-     */
     public DPBasePageAdapter(Context context, List<T> list, int layoutId,boolean isInfiniteLoop) {
        this(context,list,layoutId);
         mIsInfiniteLoop = isInfiniteLoop;

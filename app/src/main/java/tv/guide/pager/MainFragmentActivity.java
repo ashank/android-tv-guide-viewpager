@@ -18,8 +18,8 @@ import tv.guide.pager.widget.ScrollViewPager;
 
 
 public class MainFragmentActivity extends ActionBarActivity {
-    private int[] ICON_MAP_COMMON = { R.drawable.recommend_default_icon_1, R.drawable.recommend_default_icon_2,
-            R.drawable.recommend_default_icon_3, R.drawable.recommend_default_icon_5};
+    private int[] ICON_MAP_COMMON = { R.drawable.default_1, R.drawable.default_2,
+            R.drawable.default_3, R.drawable.default_5};
     private ViewPager mViewPager;
     private ScrollViewPager mGuideViewPage;
     private final int COUNT = ICON_MAP_COMMON.length;

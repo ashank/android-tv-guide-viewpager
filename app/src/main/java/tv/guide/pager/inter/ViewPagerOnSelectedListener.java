@@ -5,4 +5,8 @@ package tv.guide.pager.inter;
  */
 public interface ViewPagerOnSelectedListener {
     void onViewPageSelected(int position);
+
+    void onPageScrollStateChanged(int state);
+
+    void onPageScrolled(int arg0, float arg1, int arg2);
 }
